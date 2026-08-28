@@ -2,7 +2,7 @@
 
 The MCP server ships behind the ``mcp`` extra (``pip install
 "pyegp-parser[mcp]"``); the whole module is skipped when the extra is not
-installed. Tools are FastMCP-decorated plain functions, so they are called
+installed. Tools are MCPServer-decorated plain functions, so they are called
 directly and their JSON string results asserted.
 
 Skipping is a convenience for contributors who install without the extra. CI
