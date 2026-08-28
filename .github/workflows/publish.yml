@@ -1,0 +1,91 @@
+name: Publish
+
+# Publishes when a GitHub Release is created (release-please creates these).
+# Uses PyPI Trusted Publishing (OIDC) — no API tokens or secrets to store.
+# Publishing goes through pypa/gh-action-pypi-publish so each distribution also
+# gets a PEP 740 build attestation.
+#
+# One-time setup, add a GitHub trusted publisher on each index:
+#   PyPI:     Project → Publishing → owner lamiskin, repo pyegp-parser,
+#             workflow publish.yml, environment pypi
+#   TestPyPI: same, environment testpypi
+#
+# A GitHub Release marked "pre-release" goes to TestPyPI; a full release goes to PyPI.
+
+on:
+  release:
+    types: [published]
+  # Manual dry run: builds, validates, and can publish to TestPyPI only.
+  # Real PyPI is unreachable from this trigger by design.
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Dry-run target"
+        type: choice
+        options: [none, testpypi]
+        default: none
+
+jobs:
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - run: uv build
+      - name: Validate distribution metadata
+        run: uvx twine check --strict dist/*
+      - name: Smoke-test the built wheel
+        # Catches a wheel that builds but cannot be installed or imported —
+        # missing py.typed, a broken entry point, a package left out of the build.
+        run: |
+          uv venv /tmp/smoke
+          uv pip install --python /tmp/smoke/bin/python dist/*.whl
+          /tmp/smoke/bin/pyegp-parser --help
+          /tmp/smoke/bin/python -c "import pyegp_parser; from pyegp_parser import parse_file"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  testpypi:
+    name: Publish to TestPyPI
+    needs: build
+    # Pre-release GitHub Releases, and manual dry runs, go to TestPyPI.
+    if: >-
+      ${{ (github.event_name == 'release' && github.event.release.prerelease)
+          || (github.event_name == 'workflow_dispatch' && inputs.target == 'testpypi') }}
+    runs-on: ubuntu-latest
+    environment: testpypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          attestations: true
+
+  pypi:
+    name: Publish to PyPI
+    needs: build
+    # Full releases go to real PyPI. Never reachable from workflow_dispatch.
+    if: ${{ github.event_name == 'release' && !github.event.release.prerelease }}
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          attestations: true

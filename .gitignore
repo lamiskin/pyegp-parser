@@ -1,0 +1,53 @@
+# Virtual environments
+.venv/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Coverage
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Pytest
+.pytest_cache/
+
+# Hypothesis
+.hypothesis/
+
+# Type checker / linter caches
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+.claude/
+
+# OS files
+Thumbs.db
+.DS_Store
+# AppleDouble resource forks, created when a macOS host writes to a
+# non-HFS/APFS volume. They shadow every file in the tree, so an unqualified
+# `git add -A` would otherwise commit hundreds of them.
+._*
+
+# Docs site build output
+site/
+
+# Environment variables
+.env
+.env.*
+
+# Editor swap files
+*.swp
+*.swo
+*~

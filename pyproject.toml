@@ -1,0 +1,132 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyegp-parser"
+version = "0.1.0"
+description = "Parse SAS Enterprise Guide .egp project files into structured JSON"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Lachlan Miskin", email = "lamiskin@users.noreply.github.com" },
+]
+keywords = [
+    "sas",
+    "enterprise guide",
+    "egp",
+    "parser",
+    "etl",
+    "data lineage",
+    "project.xml",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup :: XML",
+    "Typing :: Typed",
+]
+dependencies = [
+    "jsonschema",
+]
+
+[project.optional-dependencies]
+mcp = [
+    "mcp>=1.0.0",
+]
+
+[project.scripts]
+pyegp-parser = "pyegp_parser.cli:main"
+# Requires the optional 'mcp' extra: pip install "pyegp-parser[mcp]"
+pyegp-parser-mcp = "pyegp_parser.mcp_entry:main"
+
+[project.urls]
+Homepage = "https://github.com/lamiskin/pyegp-parser"
+Repository = "https://github.com/lamiskin/pyegp-parser"
+Issues = "https://github.com/lamiskin/pyegp-parser/issues"
+Changelog = "https://github.com/lamiskin/pyegp-parser/blob/main/CHANGELOG.md"
+
+# Development tooling (PEP 735). Installed by default with `uv sync`.
+[dependency-groups]
+docs = ["mkdocs-material>=9.5"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-xdist>=3.0",
+    "hypothesis>=6.0",
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "pre-commit>=3.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["pyegp_parser*"]
+
+[tool.setuptools.package-data]
+pyegp_parser = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "RUF", # ruff-specific rules
+]
+# Line length is enforced by the formatter for code; E501 otherwise only flags
+# long string/comment literals (e.g. embedded XML fixtures) that shouldn't wrap.
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests favour readability over strict linting for fixtures and assertions.
+"tests/**" = [
+    "RUF059", # unused unpacked variables from tuple-returning fixtures
+    "B905",   # zip() without strict= is fine in tests
+    "B007",   # unused loop control variables
+    "RUF043", # pytest.raises match-pattern regex ambiguity
+    "B011",   # assert False
+    "B017",   # pytest.raises(Exception)
+    "E741",   # ambiguous variable names in small scopes
+    "F841",   # unused locals
+]
+
+[tool.coverage.run]
+source = ["pyegp_parser"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.mypy]
+python_version = "3.11"
+files = ["pyegp_parser"]
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_optional = true
+
+[[tool.mypy.overrides]]
+module = ["mcp.*", "jsonschema.*"]
+ignore_missing_imports = true

@@ -1,0 +1,43 @@
+site_name: pyegp-parser
+site_description: Parse SAS Enterprise Guide .egp project files into structured JSON
+site_url: https://lamiskin.github.io/pyegp-parser/
+repo_url: https://github.com/lamiskin/pyegp-parser
+repo_name: lamiskin/pyegp-parser
+edit_uri: ""
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Usage & API reference: reference.md
+  - AI integration: ai-integration.md
+  - LLM context guide: LLM_CONTEXT.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences

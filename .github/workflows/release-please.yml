@@ -1,0 +1,22 @@
+name: release-please
+
+# Maintains a rolling "release" PR from Conventional Commits. Merging it bumps
+# the version, updates CHANGELOG.md, tags the release, and creates a GitHub
+# Release — which triggers publish.yml to push to PyPI.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
