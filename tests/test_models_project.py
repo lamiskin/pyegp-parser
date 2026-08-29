@@ -2,6 +2,7 @@
 
 from dataclasses import fields
 
+from pyegp_parser import __version__
 from pyegp_parser.models.project import (
     BinaryEntry,
     CompletenessSummary,
@@ -216,7 +217,7 @@ class TestParsedProject:
         """Should construct with all defaults without error."""
         project = ParsedProject()
         assert project.schema_version == "1.0.0"
-        assert project.parser_version == "0.1.0"
+        assert project.parser_version == __version__
         assert project.source is None
         assert project.metadata is None
         assert project.settings is None
