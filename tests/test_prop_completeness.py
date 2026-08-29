@@ -47,9 +47,6 @@ _non_dir_category = st.sampled_from(
     [cat for cat in EntryCategory if cat != EntryCategory.EMPTY_DIRECTORY]
 )
 
-# Strategy for all entry categories
-_any_category = st.sampled_from(list(EntryCategory))
-
 # Strategy for compressed/uncompressed sizes
 _size = st.integers(min_value=0, max_value=10_000_000)
 

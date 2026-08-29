@@ -28,12 +28,6 @@ _EXECUTION_LOG_PATH_PATTERN = re.compile(
     r"^(?P<task_type>\w+)-(?P<task_id>[A-Za-z0-9]+)/Log-(?P<log_id>[A-Za-z0-9]+)/result\.log$"
 )
 
-# Regex to extract ID from project log paths:
-# ProjectLog-{ID}/ProjectLog-{ID}/result.log
-_PROJECT_LOG_PATH_PATTERN = re.compile(
-    r"^ProjectLog-(?P<id>[A-Za-z0-9]+)/ProjectLog-(?P<repeat_id>[A-Za-z0-9]+)/result\.log$"
-)
-
 
 def parse_log_element(
     element_node: ET.Element,

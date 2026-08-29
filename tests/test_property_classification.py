@@ -20,9 +20,6 @@ from pyegp_parser.classifier import classify_entry
 # Strategies for generating ZIP entry paths
 # ---------------------------------------------------------------------------
 
-# Characters that are valid in ZIP paths (printable ASCII minus some problematic ones)
-_path_chars = st.sampled_from(string.ascii_letters + string.digits + "_-./()[] ")
-
 # Strategy for random path segments
 _segment = st.text(
     alphabet=string.ascii_letters + string.digits + "_-. ",

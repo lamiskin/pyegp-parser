@@ -30,7 +30,7 @@ def discover_egp_files(directory: Path) -> list[Path]:
         raise ValueError(f"Invalid directory path: '{directory}' is not a directory")
     egp_files = list(directory.rglob("*.egp"))
     # Sort lexicographically by full path string for consistent ordering
-    egp_files.sort(key=lambda p: str(p))
+    egp_files.sort(key=str)
     return egp_files
 
 

@@ -40,7 +40,6 @@ def _make_inventory(
     inventory = ArchiveInventory(entries=entries, zip_file=mock_zip)
 
     if file_contents is not None:
-        original_get_content = inventory.get_content
 
         def mock_get_content(path: str, encoding: str = "utf-8") -> str:
             if path in file_contents:

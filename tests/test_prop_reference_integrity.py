@@ -28,7 +28,7 @@ from pyegp_parser.models.process_flow import Connection, DAGModel, ProcessFlowCo
 from pyegp_parser.models.project import ParsedProject, SourceInfo
 from pyegp_parser.models.shortcut import ShortCutToData, ShortCutToFile
 from pyegp_parser.models.tasks import (
-    CodeTaskElement,
+    ImportTaskElement,
     SubmitableElement,
 )
 from pyegp_parser.serializer import to_dict
@@ -213,10 +213,10 @@ def parsed_project_with_consistent_ids(draw):
         valid_parents = data_item_ids + [e.metadata.id for e in elements if e.metadata]
         parent = draw(st.sampled_from(valid_parents)) if valid_parents else None
         elements.append(
-            CodeTaskElement(
-                metadata=ElementMetadata(id=eid, label=f"Code_{eid}"),
+            ImportTaskElement(
+                metadata=ElementMetadata(id=eid, label=f"Import_{eid}"),
                 submitable=SubmitableElement(),
-                code_content="/* generated */",
+                parent_id=parent,
             )
         )
 

@@ -52,8 +52,6 @@ _safe_label = st.text(
 
 _element_id = st.from_regex(r"[A-Z][A-Z0-9]{3,7}", fullmatch=True)
 
-_optional_text = st.one_of(st.none(), _safe_label)
-
 
 # ---------------------------------------------------------------------------
 # Helpers to create synthetic EGP archives for non-buggy inputs
@@ -128,7 +126,7 @@ def pfd_container_xml(draw):
 
     for nid in node_ids:
         process = ET.SubElement(pfd, "Process")
-        elem = ET.SubElement(process, "Element", attrib={"ID": nid})
+        ET.SubElement(process, "Element", attrib={"ID": nid})
         if deps_map[nid]:
             dependencies = ET.SubElement(process, "Dependencies")
             for dep_source, res_dep in deps_map[nid]:

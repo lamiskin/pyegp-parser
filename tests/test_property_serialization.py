@@ -71,7 +71,6 @@ _nonempty_text = st.text(
 _optional_text = st.one_of(st.none(), _safe_text)
 _optional_bool = st.one_of(st.none(), st.booleans())
 _optional_int = st.one_of(st.none(), st.integers(min_value=0, max_value=10000))
-_id_text = _nonempty_text  # Used for IDs
 
 
 @st.composite

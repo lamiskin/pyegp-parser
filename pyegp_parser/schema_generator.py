@@ -345,6 +345,7 @@ class _SchemaGenerator:
                         schemas.append({"type": "null"})
                     return {"anyOf": schemas}
         except (ImportError, AttributeError):
+            # Best-effort: fall through to the generic type handling below.
             pass
 
         # Handle forward references (strings)

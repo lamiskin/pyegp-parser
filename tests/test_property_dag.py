@@ -103,7 +103,7 @@ def _build_pfd_xml(
 
     for node_id in nodes:
         process = ET.SubElement(pfd, "Process")
-        elem = ET.SubElement(process, "Element", attrib={"ID": node_id})
+        ET.SubElement(process, "Element", attrib={"ID": node_id})
         node_deps = deps_map.get(node_id, [])
         if node_deps:
             dependencies = ET.SubElement(process, "Dependencies")

@@ -107,11 +107,6 @@ _BOOL_SETTINGS = {
     "ClearProjectLogOnExit",
 }
 _INT_SETTINGS = {"ProjectLogMaxSize"}
-_STR_SETTINGS = {
-    "ActionOnError",
-    "ProjectLogExportFilename",
-    "ProjectLogExportLocation",
-}
 
 
 # ---------------------------------------------------------------------------
