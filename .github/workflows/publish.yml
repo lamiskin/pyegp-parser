@@ -25,6 +25,9 @@ on:
         options: [none, testpypi]
         default: none
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build distribution
