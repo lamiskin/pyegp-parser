@@ -10,7 +10,7 @@ from .models.bulk import BulkResult
 from .models.log_code import LogElement
 from .models.project import ParsedProject
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 logger = logging.getLogger(__name__)
 
