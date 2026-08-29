@@ -3,6 +3,13 @@ name: release-please
 # Maintains a rolling "release" PR from Conventional Commits. Merging it bumps
 # the version, updates CHANGELOG.md, tags the release, and creates a GitHub
 # Release — which triggers publish.yml to push to PyPI.
+#
+# Must run as a real user token, not the default GITHUB_TOKEN: GitHub
+# suppresses `release published` events from anything authored with
+# GITHUB_TOKEN (anti-recursion), so publish.yml's `on: release` trigger
+# would silently never fire. One-time setup: create a fine-grained PAT
+# scoped to just this repo (Contents: read/write, Pull requests:
+# read/write) and add it as the RELEASE_PLEASE_TOKEN repo secret.
 
 on:
   push:
@@ -20,3 +27,4 @@ jobs:
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
