@@ -34,7 +34,7 @@ From Python:
 ```python
 from pyegp_parser import parse_file
 
-project = parse_file("project.egp")   # -> ParsedProject dataclass
+project = parse_file("project.egp")  # -> ParsedProject dataclass
 ```
 
 Output is large. Prefer extracting the part you need with `jq` or Python over
