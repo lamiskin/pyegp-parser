@@ -48,11 +48,13 @@ from pyegp_parser import parse_file
 
 project = parse_file("path/to/project.egp")
 
-print(project.metadata.label)        # "My SAS Project"
-print(len(project.elements))          # 12
-print(len(project.queries))           # 3
-print(len(project.tasks))             # 5
-print(project.completeness_summary)   # CompletenessSummary(total=15, processed=14, unprocessed=1)
+print(project.metadata.label)  # "My SAS Project"
+print(len(project.elements))  # 12
+print(len(project.queries))  # 3
+print(len(project.tasks))  # 5
+print(
+    project.completeness_summary
+)  # CompletenessSummary(total=15, processed=14, unprocessed=1)
 ```
 
 Parse and write JSON output:
@@ -392,9 +394,11 @@ Use Python's logging to capture warnings:
 
 ```python
 import logging
+
 logging.basicConfig(level=logging.WARNING)
 
 from pyegp_parser import parse_file
+
 project = parse_file("project.egp")
 ```
 
@@ -411,7 +415,7 @@ project = parse_file("my_project.egp")
 
 # Get code from CodeTask elements
 for task in project.tasks:
-    if hasattr(task, 'code_content') and task.code_content:
+    if hasattr(task, "code_content") and task.code_content:
         print(f"--- {task.metadata.label} ---")
         print(task.code_content)
 
@@ -460,7 +464,9 @@ from pyegp_parser import parse_file
 project = parse_file("my_project.egp")
 
 if project.completeness_warning:
-    print(f"Warning: {project.completeness_summary.unprocessed_entries} entries not processed")
+    print(
+        f"Warning: {project.completeness_summary.unprocessed_entries} entries not processed"
+    )
     for entry in project.unprocessed_entries:
         print(f"  {entry.path} ({entry.compressed_size} bytes)")
 ```

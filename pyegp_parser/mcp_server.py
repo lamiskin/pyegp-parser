@@ -9,13 +9,13 @@ import json
 from pathlib import Path
 from typing import Any
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 from pyegp_parser import parse_directory, parse_file
 from pyegp_parser.redaction import redact
 from pyegp_parser.serializer import to_dict
 
-mcp = FastMCP(
+mcp = MCPServer(
     "pyegp-parser",
     instructions="Parse SAS Enterprise Guide .egp project files into structured JSON. Use these tools to extract code, data lineage, queries, and project structure from EGP archives.",
 )

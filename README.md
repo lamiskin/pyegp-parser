@@ -98,15 +98,15 @@ from pyegp_parser import parse_file
 
 project = parse_file("path/to/project.egp")
 
-print(project.metadata.label)     # project name
-print(len(project.tasks))         # number of tasks
-print(len(project.queries))       # number of Query Builder queries
+print(project.metadata.label)  # project name
+print(len(project.tasks))  # number of tasks
+print(len(project.queries))  # number of Query Builder queries
 ```
 
 Write JSON to disk:
 
 ```python
-parse_file("project.egp", output_dir="./output")   # writes ./output/project.json
+parse_file("project.egp", output_dir="./output")  # writes ./output/project.json
 ```
 
 ## CLI
