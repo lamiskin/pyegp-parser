@@ -12,13 +12,23 @@ updates:
         patterns: ["*"]
 
   # Python dependencies (uv reads pyproject.toml / uv.lock).
+  #
+  # Dev-only bumps (ruff, mypy, pytest, hypothesis, pre-commit — never
+  # shipped in the built wheel) get the "chore" prefix, which release-please
+  # treats as a hidden commit type: no changelog entry, no version bump, no
+  # PyPI release. Runtime bumps keep "deps", which release-please renders as
+  # a visible Dependencies section and patch-bumps for.
   - package-ecosystem: uv
     directory: "/"
     schedule:
       interval: weekly
     commit-message:
       prefix: "deps"
+      prefix-development: "chore"
     groups:
-      python-dependencies:
-        patterns:
-          - "*"
+      python-runtime:
+        dependency-type: "production"
+        patterns: ["*"]
+      python-dev:
+        dependency-type: "development"
+        patterns: ["*"]
