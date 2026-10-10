@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.5](https://github.com/lamiskin/pyegp-parser/compare/v0.1.4...v0.1.5) (2026-10-10)
+
+
+### Dependencies
+
+* bump mcp ([#24](https://github.com/lamiskin/pyegp-parser/issues/24)) ([a1d8d7f](https://github.com/lamiskin/pyegp-parser/commit/a1d8d7fbc1f4d9f8b9782063f52b4997cb6e22af))
+* bump pyjwt from 2.13.0 to 2.15.0 ([#20](https://github.com/lamiskin/pyegp-parser/issues/20)) ([81098eb](https://github.com/lamiskin/pyegp-parser/commit/81098eb5b29d5af9c821487a4a4bb2d90d822ed8))
+* bump urllib3 from 2.7.0 to 2.8.0 ([#23](https://github.com/lamiskin/pyegp-parser/issues/23)) ([473ca8b](https://github.com/lamiskin/pyegp-parser/commit/473ca8b657c60bb4b9c314f1588427a3cb3f9f6c))
+* bump virtualenv from 21.7.0 to 21.7.13 ([#22](https://github.com/lamiskin/pyegp-parser/issues/22)) ([f36b118](https://github.com/lamiskin/pyegp-parser/commit/f36b118e92dd52ac76433a7af62def6913201bc9))
+
 ## [0.1.4](https://github.com/lamiskin/pyegp-parser/compare/v0.1.3...v0.1.4) (2026-09-22)
 
 
