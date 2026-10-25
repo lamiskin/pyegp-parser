@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.6](https://github.com/lamiskin/pyegp-parser/compare/v0.1.5...v0.1.6) (2026-10-25)
+
+
+### Dependencies
+
+* bump certifi from 2026.7.22 to 2026.10.19 ([#31](https://github.com/lamiskin/pyegp-parser/issues/31)) ([e9c10c9](https://github.com/lamiskin/pyegp-parser/commit/e9c10c98819d8a428a00825faa0d449f68959e65))
+* bump filelock from 3.32.0 to 4.2.1 ([#32](https://github.com/lamiskin/pyegp-parser/issues/32)) ([66f63bc](https://github.com/lamiskin/pyegp-parser/commit/66f63bc0e74d95b46a319a6c8e6e5e436e1a31e5))
+* bump opentelemetry-api from 1.44.0 to 1.45.1 ([#30](https://github.com/lamiskin/pyegp-parser/issues/30)) ([20c3184](https://github.com/lamiskin/pyegp-parser/commit/20c318490c03054c57c5e54f10138538fb8e013a))
+* bump virtualenv from 21.7.13 to 21.14.13 ([#28](https://github.com/lamiskin/pyegp-parser/issues/28)) ([7deb9df](https://github.com/lamiskin/pyegp-parser/commit/7deb9df4316e6c0995f9d4f483cd510a5dc45730))
+
 ## [0.1.5](https://github.com/lamiskin/pyegp-parser/compare/v0.1.4...v0.1.5) (2026-10-10)
 
 
